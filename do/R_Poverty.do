@@ -58,6 +58,7 @@ drop if z==0
 keep c sum_Com
 save "Com_predict.dta",replace
 
+*****************************************Figure 4F
 use "Poverty_2019.dta",clear
 merge m:1 c using "Com_predict.dta"
 drop _merge
@@ -79,7 +80,10 @@ tab R_Poverty
 bys department:tab R_Poverty
 gen i= Inc_C/ Income
 sum i
-
+replace i=0.5 if i>0.5
+replace i=-0.5 if i<-0.5
+histogram i ,frequency bin(50) scheme(plotplain) xlab(-0.5 "-0.5" -0.4 "-0.4" -0.3 "-0.3" -0.2 "-0.2" -0.1 "-0.1" 0 "0" 0.1 "0.1" 0.2 "0.2" 0.3 "0.3" 0.4 "0.4" 0.5 "0.5", labsize(*0.8) labcolor(black) axis(1) nogrid) xtitle("Reduction of income") ysize(1) xsize(3)
+graph export "The_reduction_of_income.png",  as(png) replace
 
 
 
