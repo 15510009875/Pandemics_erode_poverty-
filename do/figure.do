@@ -1,4 +1,4 @@
-*******************figure2
+*******************figure3
 set more off
 cd D:\data\论文\COVID19_Poverty\data_dofile\data\
 use working_data.dta,clear
@@ -273,7 +273,7 @@ graph export "Agr_there_period.png.png",  as(png) replace
 
 
 
-*****************figure 3
+*****************figure 4
 use working_data.dta,clear
 keep if  department=="Commerce"	
 reghdfe ELE DID HDD CDD  WIND HUM RAIN ,absorb( c#mon c#newyear , savefe) vce(cluster cun)
@@ -426,7 +426,7 @@ graph twoway (line ELE ym, lcolor(edkblue) lpattern(soild) lwidth(medthick ))(li
 graph export "Predict_all.png",  as(png) replace
 
 
-************************SI figure 1
+************************figure S1
 use "covid.dta",clear
 graph twoway (area Regional id, fcolor(ebg) lcolor(ebg) yaxis(1)) /// 
                     (line Regional id, lpattern(shortdash) lcolor(ebg) lwidth(thin) yaxis(1)) ///
@@ -445,7 +445,7 @@ graph twoway (area Regional id, fcolor(ebg) lcolor(ebg) yaxis(1)) ///
 					xtitle("") ///
 					graphregion(fcolor(white)) ///
 					scheme(plotplain) 
-******************************SI figure 2
+******************************figure S2
 use "Poverty_covid.dta",clear
 merge 1:1 c using "Poverty_electricity.dta"
 keep if _merge==3
@@ -468,7 +468,7 @@ text(20 -1400 "51.11% ——> ", size(4) linegap(1))  ///
 text(18 -2400 "Return to poverty from the electricty", size(3) linegap(1)) ///
 xline(0,lp(soild) lcolor(gs0) ) 
 graph export "Return_poverty.png",  as(png) replace	
-***************************SI figure 3
+***************************figure S3
 use working_data.dta,clear
 keep c mon newyear ELE HDD CDD  WIND HUM RAIN  date cun
 xtset c date
