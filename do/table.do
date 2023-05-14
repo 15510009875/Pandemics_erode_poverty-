@@ -1,6 +1,6 @@
 cd D:\data\论文\COVID19_Poverty\data_dofile\data\
 
-********************************table 1
+********************************Table 1
 use working_data.dta,clear
 reghdfe ELE DID ,absorb( c#mon c#newyear) vce(cluster c)
 est store m1
@@ -26,7 +26,7 @@ gen Region_C=second*treat
 reghdfe ELE  Nation_C Mitigation_C Region_C  HDD CDD  WIND HUM RAIN ,absorb( c#mon c#newyear)  vce(cluster cun) 
 est store m4
 esttab m1 m2 m3 m4 using Table1.csv, pr2 se replace nogap b(%9.4f) star(* 0.10 ** 0.05 *** 0.01)
-***********************table 2
+***********************Table 2
 set more off
 use working_data.dta,clear
 reghdfe ELE DID HDD CDD  WIND HUM RAIN  if department=="Commerce" ,absorb( c#mon c#newyear) vce(cluster cun)
@@ -36,7 +36,7 @@ est store m2
 reghdfe ELE DID HDD CDD  WIND HUM RAIN  if department=="Agriculture",absorb( c#mon c#newyear) vce(cluster cun)
 est store m3
 esttab m1 m2 m3 using Table2.csv, pr2 se replace nogap b(%9.4f) star(* 0.10 ** 0.05 *** 0.01)
-***********************figure 3
+***********************Figure 3A-D
 set more off
 use working_data.dta,clear
 gen first=1 if mon==2 
@@ -63,7 +63,7 @@ est store m3
 reghdfe ELE  Nation_C Mitigation_C Region_C  HDD CDD  WIND HUM RAIN  if department=="Agriculture" ,absorb( c#mon c#newyear)  vce(cluster cun)  
 est store m4
 esttab m1 m2 m3 m4  using Three_period.csv, pr2 se replace nogap b(%9.4f) star(* 0.10 ** 0.05 *** 0.01)
-********************figure 3
+********************Figure 3E-H
 set more off
 use working_data.dta,clear
 reghdfe ELE pre_4 pre_3 pre_2  post* HDD CDD  WIND HUM RAIN ,absorb( c#mon c#newyear) vce(cluster cun)
@@ -75,7 +75,7 @@ est store m3
 reghdfe ELE pre_4 pre_3 pre_2  post* HDD CDD  WIND HUM RAIN  if department=="Agriculture" ,absorb( c#mon c#newyear)  vce(cluster cun)
 est store m4
 esttab m1 m2 m3 m4 using Parallel_trend_test.csv, pr2 se replace nogap b(%9.4f) star(* 0.10 ** 0.05 *** 0.01)
-******************************table 3
+******************************Table 3
 set more off
 use working_data.dta,clear
 gen DID_Low_inc =DID*lowincome
@@ -92,7 +92,7 @@ gen DID_Low_lab=DID*lowlab
 reghdfe ELE DID DID_Low_lab HDD CDD  WIND HUM RAIN  if department=="Agriculture",absorb( c#mon c#newyear) vce(cluster cun)
 est store m3
 esttab m1 m2 m3  using  Heterogeneity.csv, pr2 se replace nogap  b(%9.4f) star(* 0.10 ** 0.05 *** 0.01)
-******************************SI table 2
+******************************Table 4
 set more off
 use working_data.dta,clear
 gen DID_P_A_project=DID*Helping_Planting
