@@ -1,4 +1,4 @@
-*******************figure3
+*******************Figure3 E-F
 set more off
 cd D:\data\论文\COVID19_Poverty\data_dofile\data\
 use working_data.dta,clear
@@ -123,6 +123,7 @@ graph twoway (rarea max95 min95 x if x <= 7, fcolor(ebg) lcolor(ebg)) ///
 			rowgap(0.4) colgap(0.4) keygap(0.4) region(lcolor(white)) ) 					
 graph export "Parallel_trend_test_Agr.png",  as(png) replace	
 
+*******************Figure 3 A-D
 use working_data.dta,clear
 gen first=1 if mon==2 
 replace first=1 if mon==1
@@ -273,7 +274,7 @@ graph export "Agr_there_period.png.png",  as(png) replace
 
 
 
-*****************figure 4
+*****************Figure 4 A-D
 use working_data.dta,clear
 keep if  department=="Commerce"	
 reghdfe ELE DID HDD CDD  WIND HUM RAIN ,absorb( c#mon c#newyear , savefe) vce(cluster cun)
@@ -426,7 +427,7 @@ graph twoway (line ELE ym, lcolor(edkblue) lpattern(soild) lwidth(medthick ))(li
 graph export "Predict_all.png",  as(png) replace
 
 
-************************figure S1
+************************Figure S1
 use "covid.dta",clear
 graph twoway (area Regional id, fcolor(ebg) lcolor(ebg) yaxis(1)) /// 
                     (line Regional id, lpattern(shortdash) lcolor(ebg) lwidth(thin) yaxis(1)) ///
@@ -445,7 +446,7 @@ graph twoway (area Regional id, fcolor(ebg) lcolor(ebg) yaxis(1)) ///
 					xtitle("") ///
 					graphregion(fcolor(white)) ///
 					scheme(plotplain) 
-******************************figure S2
+******************************Figure S2
 use "Poverty_covid.dta",clear
 merge 1:1 c using "Poverty_electricity.dta"
 keep if _merge==3
@@ -468,7 +469,7 @@ text(20 -1400 "51.11% ——> ", size(4) linegap(1))  ///
 text(18 -2400 "Return to poverty from the electricty", size(3) linegap(1)) ///
 xline(0,lp(soild) lcolor(gs0) ) 
 graph export "Return_poverty.png",  as(png) replace	
-***************************figure S3
+***************************Figure S3
 use working_data.dta,clear
 keep c mon newyear ELE HDD CDD  WIND HUM RAIN  date cun
 xtset c date
